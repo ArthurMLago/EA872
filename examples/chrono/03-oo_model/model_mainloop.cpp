@@ -13,7 +13,7 @@ uint64_t get_now_ms() {
 int main ()
 {
   // Adicionar novas propriedades:
-  Corpo *c = new Corpo(10, 0, 10, 2, 0, 0.5);
+  Corpo *c = new Corpo(10, 0, 10, 20, 0, 5);
   ListaDeCorpos *l = new ListaDeCorpos();
   l->add_corpo(c);
 

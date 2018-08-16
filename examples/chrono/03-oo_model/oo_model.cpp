@@ -69,11 +69,11 @@ void Fisica::update(float deltaT, float entrada) {
   std::vector<Corpo *> *c = this->lista->get_corpos();
   for (int i = 0; i < (*c).size(); i++) {
 	// Adicionando mais forças ao sistema além da gravidade:
-	float forca = GRAVITY +
+	float forca = GRAVITY * (*c)[i]->get_massa() +
 			-(*c)[i]->get_k_mola() * ((*c)[i]->get_posicao() - (*c)[i]->get_pos_equilibrio()) +
 			-(*c)[i]->get_coef_atrito() * (*c)[i]->get_velocidade() +
 			entrada;
-    float new_vel = (*c)[i]->get_velocidade() + (float)deltaT *forca/1000;
+    float new_vel = (*c)[i]->get_velocidade() + (float)deltaT *forca/(*c)[i]->get_massa()/1000;
     float new_pos = (*c)[i]->get_posicao() + (float)deltaT * new_vel/1000;
     (*c)[i]->update(new_vel, new_pos);
   }
