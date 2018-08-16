@@ -12,7 +12,8 @@ uint64_t get_now_ms() {
 
 int main ()
 {
-  Corpo *c = new Corpo(10, 0, 10);
+  // Adicionar novas propriedades:
+  Corpo *c = new Corpo(10, 0, 10, 2, 0, 0.5);
   ListaDeCorpos *l = new ListaDeCorpos();
   l->add_corpo(c);
 
@@ -36,8 +37,8 @@ int main ()
     t1 = get_now_ms();
     deltaT = t1-t0;
 
-    // Atualiza modelo
-    f->update(deltaT);
+    // Atualiza modelo, existe parametro de entrada definindo qual a forca na entrada do sistema:
+    f->update(deltaT, 0);
 
     std::vector<Corpo *> *corpos = l->get_corpos();
 
@@ -49,7 +50,7 @@ int main ()
     }
 
     // Condicao de parada
-    if ( (t1-T) > 3000 ) break;
+    if ( (t1-T) > 300000 ) break;
 
     std::this_thread::sleep_for (std::chrono::milliseconds(100));
     i++;
